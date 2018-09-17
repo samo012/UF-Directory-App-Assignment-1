@@ -7,14 +7,13 @@ var fs = require('fs'),
     mongoose = require('mongoose'), 
     Schema = mongoose.Schema, 
     Listing = require('./ListingSchema.js'), 
-    config = require('./config');
+    config = require('./config'),
     listingsJSON = require('./listings');
 
 /* Connect to your database */
     //mongoose.connect(config.db.uri);
 
-var uri = 'config.db.uri'; //mongodb://localhost:27017/myproject';
-// Use connect method to connect to the server
+var uri = 'config.db.uri'; 
 mongoose.connect(uri, function(err, db) {
   assert.equal(null, err);
   console.log("Connected successfully to server");

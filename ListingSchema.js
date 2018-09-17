@@ -1,9 +1,12 @@
 /* Import mongoose and define any variables needed to create the schema */
 var mongoose = require('mongoose'), 
-Schema = mongoose.Schema;
+Schema = mongoose.Schema,
+config = require('./config');
 
-mongoose.connect('mongodb://localhost/myappdatabase');
-/* Create your schema */
+mongoose.connect(config.db.uri);
+
+
+
 var listingSchema = new Schema({
   name: {type: String, required: true},
   code: {type: String, required: true},
