@@ -1,8 +1,5 @@
 'use strict';
-/* 
-  Import modules/files you may need to correctly run the script. 
-  Make sure to save your DB's uri in the config file, then import it with a require statement!
- */
+
 var fs = require('fs'),
     mongoose = require('mongoose'), 
     Schema = mongoose.Schema, 
@@ -10,38 +7,23 @@ var fs = require('fs'),
     config = require('./config'),
     listingsJSON = require('./listings');
 
-/* Connect to your database */
-    //mongoose.connect(config.db.uri);
 
-var uri = 'config.db.uri'; 
-mongoose.connect(uri, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
-});
+mongoose.connect(config.db.uri);
 
-fs.readFile('listings.json', 'utf8', function(err, data){
-  if(err){
-    console.log("ERROR: Configuration load - " + err);
-    throw err;
-  }
 
-  var listings = JSON.parse(data);
-  console.log("Configuration loaded successfully");
+var listings = require('./listings.json').entries;
 
-  listings.entries.forEach(function(listing){
-      var model = new Listing(listing);
-      model.save(function(err){
-        if(err)
-          throw err;
-      });
+for (var i = 0; i < listings.length; i++) {
+
+    var item = Listing(listings[i]);
+
+    item.save(function(err) {
+
+        if (err) throw err;
+
+        console.log("Listing created..");
+
     });
 
-});
+}
 
-process.exit();
-
-
-/* 
-  Once you've written + run the script, check out your MongoLab database to ensure that 
-  it saved everything correctly. 
- */

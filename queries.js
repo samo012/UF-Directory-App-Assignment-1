@@ -9,7 +9,7 @@ mongoose.connect(config.db.uri);
 var findLibraryWest = function() {
 
 
-     Listing.find({ name: "Library West" }, function(err, listing) {
+     Listing.findOne({ name: "Library West" }, function(err, listing) {
 
       if (err) throw err;
         console.log(JSON.stringify(listing));
