@@ -1,17 +1,26 @@
 {
-  "name": "Assignment3",
+  "name": "assignment3",
   "version": "1.0.0",
-  "description": "Persisting data using MongoDB and Mongoose",
+  "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Medhir Bhargava",
-  "license": "MIT",
   "dependencies": {
-    "mongoose": "^4.2.9"
+    "mongoose": "^4.13.17",
+    "mongodb": "^3.1.6"
   },
   "devDependencies": {
-    "should": "^7.1.1"
-  }
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samo012/UF-Directory-App-Assignment-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samo012/UF-Directory-App-Assignment-1/issues"
+  },
+  "homepage": "https://github.com/samo012/UF-Directory-App-Assignment-1#readme"
 }

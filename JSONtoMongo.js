@@ -8,13 +8,38 @@ var fs = require('fs'),
     Schema = mongoose.Schema, 
     Listing = require('./ListingSchema.js'), 
     config = require('./config');
+    listingsJSON = require('./listings');
 
 /* Connect to your database */
+    //mongoose.connect(config.db.uri);
 
-/* 
-  Instantiate a mongoose model for each listing object in the JSON file, 
-  and then save it to your Mongo database 
- */
+var uri = 'config.db.uri'; //mongodb://localhost:27017/myproject';
+// Use connect method to connect to the server
+mongoose.connect(uri, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected successfully to server");
+});
+
+fs.readFile('listings.json', 'utf8', function(err, data){
+  if(err){
+    console.log("ERROR: Configuration load - " + err);
+    throw err;
+  }
+
+  var listings = JSON.parse(data);
+  console.log("Configuration loaded successfully");
+
+  listings.entries.forEach(function(listing){
+      var model = new Listing(listing);
+      model.save(function(err){
+        if(err)
+          throw err;
+      });
+    });
+
+});
+
+process.exit();
 
 
 /* 
